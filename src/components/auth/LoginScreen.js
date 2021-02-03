@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import validator from 'validator';
 import { useForm } from '../../hooks/useForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, startGoogleLogin, startLoginEmailPassword } from '../../actions/authAction';
+import { startGoogleLogin, startLoginEmailPassword } from '../../actions/authAction';
 import { removeUiError, setUiError } from '../../actions/uiAction';
 
 export const LoginScreen = () => {
