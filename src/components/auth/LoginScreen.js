@@ -1,15 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import validator from 'validator';
 import { useForm } from '../../hooks/useForm';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login, startGoogleLogin, startLoginEmailPassword } from '../../actions/authAction';
+import { removeUiError, setUiError } from '../../actions/uiAction';
 
 export const LoginScreen = () => {
     
     const dispatch = useDispatch();
 
+    const { loading } = useSelector(( {ui} ) => ui );
+
     const [ formValues, handleImputChange ] = useForm({
-        email: 'rodrigo@gmail.com',
+        email: 'rodrigo.rodriguez@gmail.com',
         password: '123456'
     });
 
@@ -17,11 +21,25 @@ export const LoginScreen = () => {
     
     const handleLogin = (e) =>{
         e.preventDefault();
-        dispatch( startLoginEmailPassword(email, password) );
+        if ( isFormValid() ) {
+            dispatch( startLoginEmailPassword(email, password) );    
+        }
     }
 
     const handleGoogleLogin = () =>{
         dispatch ( startGoogleLogin() );
+    }
+
+    const isFormValid = () =>{
+        if (!validator.isEmail(email)) {
+            dispatch(setUiError('The email is not valid.'));
+            return false;
+        } else if (password.length < 6) {
+            dispatch(setUiError('Password should contain at least 6 character.'));
+            return false;
+        }
+        dispatch(removeUiError());
+        return true;
     }
 
     return (
@@ -31,7 +49,7 @@ export const LoginScreen = () => {
             <form onSubmit={ handleLogin }>
                 <input type='text' placeholder='Email' name='email' className='auth__input' autoComplete='off' value = {email} onChange={handleImputChange} />
                 <input type='password' placeholder='Password' name='password' className='auth__input' value = {password} onChange={handleImputChange} />
-                <button type='submit' className='btn btn-primary btn-block'> Login </button>
+                <button type='submit' className='btn btn-primary btn-block' disabled={loading} > Login </button>
 
                 <div className='auth__social-networks'>
                     <p>Login with social networks</p>
