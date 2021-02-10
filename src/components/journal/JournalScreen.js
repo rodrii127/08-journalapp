@@ -17,7 +17,8 @@ export const JournalScreen = () => {
     const tamanio = window.innerWidth;
 
     return (
-        <div >    {
+        <div >
+             <img src='./08-journalapp/static/media/loading.gif' alt = 'Loading' className='auth__loading-gif' />    {
             loading
                 ? <LoadingScreen />
                 : <div id="App" className='jounral__main-content animate__animated animate__fadeIn animate__faster	500ms'>
