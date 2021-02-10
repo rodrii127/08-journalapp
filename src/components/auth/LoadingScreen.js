@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './08-journalapp/static/loading.39ee2642.gif';
+import logo from './08-journalapp/static/media/loading.39ee2642.gif';
 
 export const LoadingScreen = () => {
     return (
