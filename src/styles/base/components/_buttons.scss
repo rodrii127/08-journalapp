@@ -68,3 +68,17 @@
         background: $button-active-blue;
     }
 }
+
+.btn-delete{
+    background-color: red;
+    &:hover{
+        background-color: darken($color: red, $amount: 20);
+    }
+}
+
+@media (max-width: 800px) {
+    .btn-logout{
+        margin-right: 30px;
+    }
+  }
+

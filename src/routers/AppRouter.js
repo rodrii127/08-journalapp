@@ -4,7 +4,6 @@ import { firebase } from '../firebase/firebase-config';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
     Redirect
 } from "react-router-dom";
 import { JournalScreen } from '../components/journal/JournalScreen';
@@ -13,6 +12,7 @@ import { login } from '../actions/authAction';
 import { LoadingScreen } from '../components/auth/LoadingScreen';
 import { PrivateRoute } from './PrivateRoute'
 import { PublicRoute } from './PublicRoute'
+import { loadNotes } from '../actions/notesAction';
 
 
 export const AppRouter = () => {
@@ -26,6 +26,7 @@ export const AppRouter = () => {
         firebase.auth().onAuthStateChanged( (user) => {
             if (user?.uid) {
                 dispatch( login( user.uid, user.displayName ) );
+                dispatch( loadNotes(user.uid) );
                 setIsLogedIn(true);
             }else{
                 setIsLogedIn(false);

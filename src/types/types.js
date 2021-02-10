@@ -8,5 +8,13 @@ export const types = {
     uiRemoveError: '[UI] Remove Error',
 
     uiStartLoading: '[UI] Start loading',
-    uiFinishLoading: '[UI] Finish loading'
+    uiFinishLoading: '[UI] Finish loading',
+
+    notesAddNew: '[Notes] Add new note',
+    notesActive: '[Notes] Set Active note',
+    notesLoad: '[Notes] Load notes',
+    notesUpdated: '[Notes] Update note',
+    notesFileUrl: '[Notes] Update image url',
+    notesDelete: '[Notes] Note deleted',
+    notesLogoutCleaning: '[Notes] Logout Cleaning',
 }

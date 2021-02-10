@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import { types } from "../types/types";
 import { firebase, googleAuthProvider } from '../firebase/firebase-config';
 import { finishLoading, startLoading } from "./uiAction";
+import { noteLogout } from './notesAction';
 
 const successSignIn = Swal.mixin({
     toast: true,
@@ -18,15 +19,17 @@ const successSignIn = Swal.mixin({
 
 const confirmLogout = (dispatch) => {
     Swal.fire({
-        title: 'Do you want to exit the application?',
+        title: 'You are loging out the app, are you sure?',
         confirmButtonText: 'Logout',
-        denyButtonText: 'Cancel',
+        icon: 'warning',
+        showCancelButton: true,
     }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             firebase.auth().signOut();
             dispatch(logout());
-            Swal.fire('Logout!', '', 'success')
+            dispatch( noteLogout() );
+            Swal.fire('Logout!', '', 'success');
         }
     })
 }
@@ -51,7 +54,7 @@ export const starRegisterWithPasswordName = (name, email, password) => {
         firebase.auth().createUserWithEmailAndPassword(email, password).then(async ({ user }) => {
             await user.updateProfile({ displayName: name });
             dispatch(login(user.uid, user.displayName));
-
+            successSignIn.fire({ icon: 'success', title: 'Signed in successfully' });
         }).catch(e => {
             Swal.fire('ERROR', e.message, 'error');
         })

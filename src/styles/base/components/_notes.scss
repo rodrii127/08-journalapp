@@ -44,6 +44,13 @@
 }
 
 .notes__image{
+    align-self: center;
     box-shadow: 5px 5px $dark-grey;
-    size: 150px;
+    width: 15%;
 }
+
+@media (max-width: 800px) {
+    .notes__date_appbar {
+        margin-left: 50px;
+    }
+  }
