@@ -18,7 +18,7 @@ export const JournalScreen = () => {
 
     return (
         <div >
-                {
+        {
             loading
                 ? <LoadingScreen />
                 : <div id="App" className='jounral__main-content animate__animated animate__fadeIn animate__faster	500ms'>

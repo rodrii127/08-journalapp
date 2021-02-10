@@ -3,9 +3,8 @@ import React from 'react'
 export const NothingSelected = () => {
     return (
         <div className='nothing__main-content'>
-            <img src='./08-journalapp/static/media/loading.gif' alt = 'Loading' className='auth__loading-gif' alt='loaging' />
             <p>
-                NO FUNCIONA
+                Select something
                 <br />
                 Or create an entry!
             </p>
