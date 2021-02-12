@@ -92,3 +92,9 @@
 .jorunal__entry-date-box span{
     font-size: 12px;
 }
+
+@media (max-width: 800px) {
+    .journal__sidebar{
+        width: 70vw;
+    }
+  }
